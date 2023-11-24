@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>MyHouse</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+        * {
+           margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+}
+
+        :root{
+                --tg-theme-text-color: #ffffff;
+                --tg-theme-button-color: #ff69b4;
+                --tg-theme-button-text-color: #ffffff;
+                --tg-theme-secondary-bg-color: #0000ff;
+
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif ;
+            font-weight: 200;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-text-color);
+        }
+
+        #main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+           margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        img {
+            width: 70px;
+            margin: 50px auto;
+        }
+
+        p {
+            width: 350px;
+            margin: 0 auto;
+        }
+
+        button {
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 60px;
+            width: 200px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            color: var(--tg-theme-button-color);
+            background: var(--tg-theme-button-text-color);
+        }
+
+        button:hover {
+            background: var(--tg-theme-secondary-bg-color);
+        }
+
+        #form {
+            display: none;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            outline: none;
+            margin: 10px 5%;
+            padding: 15px 10px;
+            font-size: 14px;
+            border: 2px solid silver;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #db5d5d;
+        }
+    </style>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+<body>
+    <div id="main">
+        <h1>My House Shop</h1>
+        <img src="photo_2023-09-20_01-52-57.jpg">
+        <p>
+        </p>
+        <button id="buy">Заповніть нашу форму</button>
+    </div>
+<form id="form">
+    <input type="text" placeholder="П.І.Б" id="user_name">
+    <input type="text" placeholder="Email" id="user_email">
+    <input type="text" placeholder="Номер телефону" id="user_phone">
+    <button id="order" >Замовити дзвінок</button>
+</form>
+<script>
+    let tg= window.Telegram.WebApp;
+    let buy= document.getElementById("buy");
+    let order= document.getElementById("order");
+
+
+    buy.addEventListener("click",() => {
+       document.getElementById("main").style.display = "none";
+       document.getElementById("form").style.display = "block";
+       document.getElementById("user_name").value = tg.InitDataUnsafe.user.first_name + " " + tg.InitDataUnsafe.user.last_name;
+    });
+
+</script>
+</body>
+</html>
